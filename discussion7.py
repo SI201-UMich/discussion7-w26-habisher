@@ -1,3 +1,4 @@
+# Discussion 7 - Starting work
 import unittest
 import os
 import csv
