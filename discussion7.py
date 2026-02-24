@@ -32,7 +32,20 @@ def load_listings(f):
     full_path = os.path.join(base_path, f)
 
     # TODO: Read the CSV using csv.reader and convert it to a list a dictionaries
-    pass
+    with open(full_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        listings = []
+
+    for row in reader:
+            row['price'] = float(row['price'])
+            row['minimum_nights'] = int(row['minimum_nights'])
+            row['number_of_reviews'] = int(row['number_of_reviews'])
+            row['reviews_per_month'] = float(row['reviews_per_month']) if row['reviews_per_month'] else 0.0
+            row['calculated_host_listings_count'] = int(row['calculated_host_listings_count'])
+            row['availability_365'] = int(row['availability_365'])
+            listings.append(row)
+
+    return listings
 
 ###############################################################################
 ##### TASK 2: CALCULATION FUNCTION (single calculation)
