@@ -107,7 +107,20 @@ def write_summary_csv(out_filename, avg_prices):
         None
             Writes a CSV file with header: neighbourhood_group, room_type, average_price
     """
-    pass
+def calculate_minimum_nights_by_neighbourhood_group(listings):
+
+    minimums = {}
+
+    for listing in listings:
+        group = listing['neighbourhood_group']
+        nights = int(listing['minimum_nights'])
+
+        if group not in minimums:
+            minimums[group] = nights
+        else:
+            minimums[group] = min(minimums[group], nights)
+
+    return minimums 
 
 ###############################################################################
 ##### UNIT TESTS (Do not modify the code below!)
